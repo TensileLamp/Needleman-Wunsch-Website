@@ -6,6 +6,14 @@
   <title>Needleman-Wunsch Algorithm</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Needleman-Wunsch Algorithm</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
@@ -157,3 +165,155 @@ void needlemanWunsch(char *seq1, char *seq2) {
   <script src="script.js"></script>
 </body>
 </html>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#home" class="nav-logo"><i class="fa-solid fa-dna"></i> Needleman-Wunsch Algorithm</a>
+      <ul class="nav-menu">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#algo">Algo & Code</a></li>
+        <li><a href="#implementation">Implementation</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <!-- Home Section -->
+    <section id="home" class="card">
+      <h2>Home</h2>
+      <p>
+        Welcome to the Needleman-Wunsch Sequence Alignment Visualizer. This project helps you understand
+        DNA sequence alignment and how the Needleman-Wunsch algorithm works.
+      </p>
+      <h3>DNA Basics</h3>
+      <p>
+        DNA (Deoxyribonucleic Acid) is made of four nucleotides: <strong>Adenine (A)</strong>,
+        <strong>Thymine (T)</strong>, <strong>Guanine (G)</strong>, and <strong>Cytosine (C)</strong>.
+        A pairs with T, and G pairs with C. DNA sequences are represented as strings of these letters.
+      </p>
+      <h3>Sequence Alignment Basics</h3>
+      <p>
+        Sequence alignment is the process of arranging DNA sequences to identify regions of similarity.
+        It helps identify mutations, evolutionary relationships, and functional regions. Global alignment
+        aligns entire sequences, while local alignment finds the best matching region.
+      </p>
+    </section>
+
+    <!-- Algo & Code Section -->
+    <section id="algo" class="card">
+      <h2>Algorithm & C Implementation</h2>
+      <h3>Needleman-Wunsch Algorithm</h3>
+      <p>
+        The Needleman-Wunsch algorithm performs global sequence alignment using dynamic programming.
+        It initializes a DP table with gap penalties, fills it using match/mismatch and gap scoring, 
+        and backtracks to find the optimal alignment.
+      </p>
+      <h3>C Implementation</h3>
+      <pre>
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+#define MATCH 1
+#define MISMATCH -1
+#define GAP -2
+
+int max(int a, int b, int c) {
+    int m = (a &gt; b) ? a : b;
+    return (m &gt; c) ? m : c;
+}
+
+void needlemanWunsch(char *seq1, char *seq2) {
+    int m = strlen(seq1);
+    int n = strlen(seq2);
+    int dp[m+1][n+1];
+
+    for(int i=0;i&lt;=m;i++) dp[i][0] = i*GAP;
+    for(int j=0;j&lt;=n;j++) dp[0][j] = j*GAP;
+
+    for(int i=1;i&lt;=m;i++){
+        for(int j=1;j&lt;=n;j++){
+            int scoreDiag = dp[i-1][j-1] + ((seq1[i-1]==seq2[j-1]) ? MATCH : MISMATCH);
+            int scoreUp = dp[i-1][j] + GAP;
+            int scoreLeft = dp[i][j-1] + GAP;
+            dp[i][j] = max(scoreDiag, scoreUp, scoreLeft);
+        }
+    }
+
+    int i=m, j=n;
+    char align1[2*m], align2[2*m]; 
+    int k = 0;
+    while(i&gt;0 || j&gt;0){
+        if(i&gt;0 &amp;&amp; j&gt;0 &amp;&amp; dp[i][j]==dp[i-1][j-1]+((seq1[i-1]==seq2[j-1])?MATCH:MISMATCH)){
+            align1[k]=seq1[i-1]; align2[k]=seq2[j-1]; i--; j--; k++;
+        } else if(i&gt;0 &amp;&amp; dp[i][j]==dp[i-1][j]+GAP){
+            align1[k]=seq1[i-1]; align2[k]='-'; i--; k++;
+        } else{
+            align1[k]='-'; align2[k]=seq2[j-1]; j--; k++;
+        }
+    }
+    align1[k]='\0'; align2[k]='\0';
+    for(int x=k-1;x&gt;=0;x--) printf("%c", align1[x]);
+    printf("\n");
+    for(int x=k-1;x&gt;=0;x--) printf("%c", align2[x]);
+}
+      </pre>
+    </section>
+
+    <!-- Implementation Section -->
+    <section id="implementation" class="card">
+      <h2>Interactive Implementation</h2>
+      <div class="inputs">
+          <input type="text" id="seq1" placeholder="Sequence 1" value="AGTC">
+          <input type="text" id="seq2" placeholder="Sequence 2" value="ATCG">
+          <button id="startBtn"><i class="fa-solid fa-play"></i> Start</button>
+          <label for="speedSelect">Speed:</label>
+          <select id="speedSelect">
+              <option value="1">1x</option>
+              <option value="2">2x</option>
+              <option value="3">3x</option>
+          </select>
+      </div>
+
+      <div class="alignment-container">
+          <div class="dp-container">
+              <h3>DP Matrix (Step-by-Step)</h3>
+              <div id="matrix"></div>
+          </div>
+          <div class="steps-container">
+              <h3>DP Steps</h3>
+              <div id="steps"></div>
+          </div>
+      </div>
+
+      <div class="backtrack-container">
+          <h3>Backtracking Table</h3>
+          <div class="backtrack-flex">
+              <div id="backtrackMatrix"></div>
+              <div id="btSteps" class="bt-steps-log">
+                  <h4>Backtracking Steps:</h4>
+              </div>
+          </div>
+      </div>
+
+      <h3>Optimal Alignment</h3>
+      <div id="alignment"></div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="card">
+      <h2>About</h2> <h3>Team Members : </h3>
+      <p class="names">G Madhav - AP24110011532</p>
+      <p class="names">R Gaurav - AP24110011518</p>
+    </section>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
