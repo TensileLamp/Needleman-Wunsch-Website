@@ -112,6 +112,12 @@ void needlemanWunsch(char *seq1, char *seq2) {
           <input type="text" id="seq1" placeholder="Sequence 1" value="AGTC">
           <input type="text" id="seq2" placeholder="Sequence 2" value="ATCG">
           <button id="startBtn"><i class="fa-solid fa-play"></i> Start</button>
+          <label for="speedSelect">Speed:</label>
+          <select id="speedSelect">
+              <option value="1">1x</option>
+              <option value="2">2x</option>
+              <option value="3">3x</option>
+          </select>
       </div>
 
       <div class="alignment-container">
@@ -141,8 +147,9 @@ void needlemanWunsch(char *seq1, char *seq2) {
 
     <!-- About Section -->
     <section id="about" class="card">
-      <h2>About</h2>
-      <p>Coming soon...</p>
+      <h2>About</h2> <h3>Team Members : </h3>
+      <p class="names">G Madhav - AP24110011532</p>
+      <p class="names">R Gaurav - AP24110011518</p>
     </section>
 
   </div>
