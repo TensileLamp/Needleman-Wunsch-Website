@@ -97,13 +97,18 @@ html {
     color: #34495e;
 }
 
-/* Inputs */
-.inputs input {
+/* Inputs and Buttons */
+.inputs input, .inputs select {
     padding: 10px;
     margin: 5px;
     width: 180px;
     border-radius: 5px;
     border: 1px solid #ccc;
+}
+
+.inputs select {
+    width: 80px;
+    margin-left: 10px;
 }
 
 .inputs button {
@@ -113,7 +118,10 @@ html {
     background: #4fc3f7;
     color: #fff;
     cursor: pointer;
+    font-size: 15px;
+    margin-right: 15px; /* <-- add this */
 }
+
 
 .inputs button:hover {
     background: #039be5;
@@ -126,7 +134,8 @@ html {
     gap: 20px;
 }
 
-.dp-container, .steps-container {
+.dp-container,
+.steps-container {
     flex: 1 1 400px;
     background: #f0f4f8;
     padding: 15px;
@@ -135,13 +144,16 @@ html {
     overflow-y: auto;
 }
 
-.dp-container table, #backtrackMatrix table {
+.dp-container table,
+#backtrackMatrix table {
     border-collapse: collapse;
     margin: 0 auto;
 }
 
-.dp-container td, .dp-container th,
-#backtrackMatrix td, #backtrackMatrix th {
+.dp-container td,
+.dp-container th,
+#backtrackMatrix td,
+#backtrackMatrix th {
     border: 1px solid #ccc;
     padding: 10px;
     text-align: center;
@@ -151,15 +163,17 @@ html {
     transition: background 0.3s, color 0.3s;
 }
 
-.dp-container td.active, #backtrackMatrix td.active {
+/* Active Highlight */
+.dp-container td.active,
+#backtrackMatrix td.active {
     background: #4fc3f7;
     color: #fff;
 }
 
-/* Step Logs (DP and Backtracking) */
-#steps p.current-step, 
+/* Logs */
+#steps p.current-step,
 #btSteps p {
-    background: #4fc3f7;  
+    background: #4fc3f7;
     color: #fff;
     padding: 8px 12px;
     border-radius: 8px;
@@ -175,7 +189,8 @@ html {
     transform: scale(1.02);
 }
 
-#steps, #btSteps {
+#steps,
+#btSteps {
     max-height: 400px;
     overflow-y: auto;
     padding: 10px;
@@ -184,17 +199,33 @@ html {
     border: 1px solid #ccc;
 }
 
-/* Alignment Output */
+/* ----------------------------- */
+/* 🔥 IMPROVED ALIGNMENT OUTPUT  */
+/* ----------------------------- */
+
 #alignment {
     font-family: 'Roboto Slab', serif;
-    font-size: 22px;
+    font-size: 28px;
     font-weight: 700;
-    color: #039be5;
+    color: #1f2c3a;
     text-align: center;
-    margin-top: 15px;
+    margin-top: 20px;
+    padding: 20px;
 }
 
-/* Backtracking Table */
+#alignment pre {
+    font-size: 30px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    background: #eef7ff;
+    padding: 20px 30px;
+    border-radius: 12px;
+    display: inline-block;
+    border: 2px solid #b5d9f8;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Backtracking Container */
 .backtrack-container {
     margin-top: 20px;
 }
@@ -220,7 +251,13 @@ html {
 
 /* Responsive */
 @media (max-width: 900px) {
-    .alignment-container, .backtrack-flex {
+    .alignment-container,
+    .backtrack-flex {
         flex-direction: column;
     }
+}
+
+.names {
+    font-weight: bold;
+    font-family: 'Lucida Sans', Verdana, sans-serif;
 }
