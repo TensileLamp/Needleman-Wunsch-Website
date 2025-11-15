@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Open+Sans:wght@400;600&display=swap');
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background: linear-gradient(to right, #f4f7f9, #e4ebf0);
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 70px;
+}
+
+/* Navbar */
+.navbar {
+    position: sticky;
+    top: 0;
+    background: #1f2c3a;
+    padding: 15px 20px;
+    z-index: 100;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.nav-logo {
+    color: #f7f9fa;
+    font-size: 22px;
+    font-weight: 700;
+    text-decoration: none;
+    font-family: 'Roboto Slab', serif;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.nav-logo:hover {
+    color: #4fc3f7;
+    transform: scale(1.05);
+}
+
+.nav-menu {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-menu li a {
+    color: #f7f9fa;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.nav-menu li a:hover {
+    color: #4fc3f7;
+}
+
+/* Cards */
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+.card {
+    background: #ffffff;
+    padding: 25px;
+    margin: 20px 0;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+.card h2 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #1f2c3a;
+}
+
+.card h3 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: #34495e;
+}
+
+/* Inputs */
+.inputs input {
+    padding: 10px;
+    margin: 5px;
+    width: 180px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.inputs button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background: #4fc3f7;
+    color: #fff;
+    cursor: pointer;
+}
+
+.inputs button:hover {
+    background: #039be5;
+}
+
+/* Alignment Container */
+.alignment-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.dp-container, .steps-container {
+    flex: 1 1 400px;
+    background: #f0f4f8;
+    padding: 15px;
+    border-radius: 10px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.dp-container table, #backtrackMatrix table {
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+.dp-container td, .dp-container th,
+#backtrackMatrix td, #backtrackMatrix th {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    min-width: 40px;
+    font-family: 'Roboto Slab', serif;
+    font-weight: 600;
+    transition: background 0.3s, color 0.3s;
+}
+
+.dp-container td.active, #backtrackMatrix td.active {
+    background: #4fc3f7;
+    color: #fff;
+}
+
+/* Step Logs (DP and Backtracking) */
+#steps p.current-step, 
+#btSteps p {
+    background: #4fc3f7;  
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin: 5px 0;
+    font-family: 'Roboto Slab', serif;
+    font-weight: 600;
+    transition: background 0.3s, transform 0.2s;
+}
+
+#steps p.current-step:hover,
+#btSteps p:hover {
+    background: #039be5;
+    transform: scale(1.02);
+}
+
+#steps, #btSteps {
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 10px;
+    background: #f0f4f8;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
+
+/* Alignment Output */
+#alignment {
+    font-family: 'Roboto Slab', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #039be5;
+    text-align: center;
+    margin-top: 15px;
+}
+
+/* Backtracking Table */
+.backtrack-container {
+    margin-top: 20px;
+}
+
+.backtrack-flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+#backtrackMatrix {
+    flex: 1 1 400px;
+    background: #f0f4f8;
+    padding: 15px;
+    border-radius: 10px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.bt-steps-log {
+    flex: 1 1 300px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .alignment-container, .backtrack-flex {
+        flex-direction: column;
+    }
+}
